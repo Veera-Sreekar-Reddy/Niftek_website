@@ -1,11 +1,85 @@
-import Link from 'next/link';
+'use client';
 
-export const metadata = {
-  title: 'Careers | Niftek',
-  description: 'Join the Niftek team and build your career with us.',
-};
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function CareersPage() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    coverLetter: '',
+  });
+
+  const [resume, setResume] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setResume(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('firstName', formData.firstName);
+      formDataToSend.append('lastName', formData.lastName);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('coverLetter', formData.coverLetter);
+      
+      if (resume) {
+        formDataToSend.append('resume', resume);
+      }
+
+      const response = await fetch('/api/careers', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit application');
+      }
+
+      setSubmitStatus('success');
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        coverLetter: '',
+      });
+      setResume(null);
+      // Reset file input
+      const fileInput = document.getElementById('resume') as HTMLInputElement;
+      if (fileInput) {
+        fileInput.value = '';
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-niftek-offwhite min-h-screen">
       <div className="container mx-auto px-4 py-8 md:py-12">
@@ -34,116 +108,182 @@ export default function CareersPage() {
           </p>
         </div>
 
-        {/* Content Section */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-md p-6 md:p-8 mb-8">
-            <h2 className="text-2xl font-semibold text-niftek-dark mb-4">Why Work With Us?</h2>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 mt-1">
-                  <svg className="w-6 h-6 text-niftek-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Why Work With Us Section */}
+            <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
+              <h2 className="text-2xl font-semibold text-niftek-dark mb-4">Why Work With Us?</h2>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <svg className="w-6 h-6 text-niftek-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-niftek-dark mb-1">Innovative Projects</h3>
+                    <p className="text-niftek-dark/80 leading-relaxed">
+                      Work on cutting-edge AI and technology projects that make a real impact.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-niftek-dark mb-1">Innovative Projects</h3>
-                  <p className="text-niftek-dark/80 leading-relaxed">
-                    Work on cutting-edge AI and technology projects that make a real impact.
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 mt-1">
-                  <svg className="w-6 h-6 text-niftek-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <svg className="w-6 h-6 text-niftek-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-niftek-dark mb-1">Collaborative Team</h3>
+                    <p className="text-niftek-dark/80 leading-relaxed">
+                      Join a supportive team that values collaboration, learning, and growth.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-niftek-dark mb-1">Collaborative Team</h3>
-                  <p className="text-niftek-dark/80 leading-relaxed">
-                    Join a supportive team that values collaboration, learning, and growth.
-                  </p>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <svg className="w-6 h-6 text-niftek-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-niftek-dark mb-1">Career Growth</h3>
+                    <p className="text-niftek-dark/80 leading-relaxed">
+                      Opportunities for professional development and career advancement.
+                    </p>
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 mt-1">
-                  <svg className="w-6 h-6 text-niftek-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-niftek-dark mb-1">Career Growth</h3>
-                  <p className="text-niftek-dark/80 leading-relaxed">
-                    Opportunities for professional development and career advancement.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Open Positions */}
-          <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
-            <h2 className="text-2xl font-semibold text-niftek-dark mb-6">Open Positions</h2>
-            <div className="space-y-4">
-              <div className="border border-niftek-light rounded-lg p-4 hover:border-niftek-medium transition-colors">
-                <h3 className="text-xl font-semibold text-niftek-dark mb-2">AI Engineer</h3>
-                <p className="text-niftek-dark/80 mb-3">
-                  We are looking for an experienced AI Engineer to join our team and work on innovative AI solutions.
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center text-niftek-medium hover:text-niftek-dark transition-colors font-medium"
-                >
-                  Apply Now
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-
-              <div className="border border-niftek-light rounded-lg p-4 hover:border-niftek-medium transition-colors">
-                <h3 className="text-xl font-semibold text-niftek-dark mb-2">Software Developer</h3>
-                <p className="text-niftek-dark/80 mb-3">
-                  Join our development team to build scalable and innovative software solutions.
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center text-niftek-medium hover:text-niftek-dark transition-colors font-medium"
-                >
-                  Apply Now
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-
-              <div className="border border-niftek-light rounded-lg p-4 hover:border-niftek-medium transition-colors">
-                <h3 className="text-xl font-semibold text-niftek-dark mb-2">Cybersecurity Specialist</h3>
-                <p className="text-niftek-dark/80 mb-3">
-                  Help protect our clients with cutting-edge cybersecurity solutions and AI-powered security tools.
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center text-niftek-medium hover:text-niftek-dark transition-colors font-medium"
-                >
-                  Apply Now
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
               </div>
             </div>
 
-            <div className="mt-8 p-4 bg-niftek-light/30 rounded-lg">
-              <p className="text-niftek-dark/80 text-center">
-                Don't see a position that matches your skills?{' '}
-                <Link href="/contact" className="text-niftek-medium hover:text-niftek-dark font-medium transition-colors">
-                  Contact us
-                </Link>
-                {' '}to learn about future opportunities.
-              </p>
+            {/* Application Form Section */}
+            <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
+              <h2 className="text-2xl font-semibold text-niftek-dark mb-6">Apply Now</h2>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="firstName" className="block text-sm font-medium text-niftek-dark mb-2">
+                      First Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2.5 border border-niftek-light rounded-lg focus:outline-none focus:ring-2 focus:ring-niftek-medium focus:border-transparent text-niftek-dark placeholder:text-niftek-dark/40"
+                      placeholder="John"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-medium text-niftek-dark mb-2">
+                      Last Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2.5 border border-niftek-light rounded-lg focus:outline-none focus:ring-2 focus:ring-niftek-medium focus:border-transparent text-niftek-dark placeholder:text-niftek-dark/40"
+                      placeholder="Doe"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-niftek-dark mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2.5 border border-niftek-light rounded-lg focus:outline-none focus:ring-2 focus:ring-niftek-medium focus:border-transparent text-niftek-dark placeholder:text-niftek-dark/40"
+                    placeholder="john.doe@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-niftek-dark mb-2">
+                    Phone *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2.5 border border-niftek-light rounded-lg focus:outline-none focus:ring-2 focus:ring-niftek-medium focus:border-transparent text-niftek-dark placeholder:text-niftek-dark/40"
+                    placeholder="555-555-5555"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="resume" className="block text-sm font-medium text-niftek-dark mb-2">
+                    Resume * (PDF, DOC, DOCX - Max 5MB)
+                  </label>
+                  <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    onChange={handleFileChange}
+                    accept=".pdf,.doc,.docx"
+                    required
+                    className="w-full px-4 py-2.5 border border-niftek-light rounded-lg focus:outline-none focus:ring-2 focus:ring-niftek-medium focus:border-transparent text-niftek-dark file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-niftek-light file:text-niftek-dark hover:file:bg-niftek-medium hover:file:text-white file:cursor-pointer"
+                  />
+                  {resume && (
+                    <p className="mt-2 text-sm text-niftek-dark/70">
+                      Selected: {resume.name}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="coverLetter" className="block text-sm font-medium text-niftek-dark mb-2">
+                    Cover Letter (Optional)
+                  </label>
+                  <textarea
+                    id="coverLetter"
+                    name="coverLetter"
+                    value={formData.coverLetter}
+                    onChange={handleChange}
+                    rows={5}
+                    className="w-full px-4 py-2.5 border border-niftek-light rounded-lg focus:outline-none focus:ring-2 focus:ring-niftek-medium focus:border-transparent text-niftek-dark placeholder:text-niftek-dark/40 resize-none"
+                    placeholder="Tell us why you're interested in joining Niftek..."
+                  />
+                </div>
+
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
+                    Thank you! Your application has been submitted successfully. We'll review your resume and get back to you soon.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+                    Something went wrong. Please try again later or contact us directly.
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-niftek-medium text-white py-3 px-6 rounded-lg font-semibold hover:bg-niftek-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -151,5 +291,3 @@ export default function CareersPage() {
     </div>
   );
 }
-
-

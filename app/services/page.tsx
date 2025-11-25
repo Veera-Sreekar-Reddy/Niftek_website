@@ -1,11 +1,191 @@
-import Link from 'next/link';
+'use client';
 
-export const metadata = {
-  title: 'Services | Niftek',
-  description: 'Explore our comprehensive range of services at Niftek Inc.',
-};
+import Link from 'next/link';
+import ExpandableServiceCard from '@/components/ui/expandable-service-card';
 
 export default function ServicesPage() {
+  const services = [
+    {
+      title: 'AI Services',
+      description: 'Comprehensive AI solutions including LLM implementations, RAG systems, and AI governance.',
+      src: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
+      ctaText: 'Learn More',
+      ctaLink: '/contact',
+      content: () => (
+        <div className="space-y-4">
+          <p className="text-niftek-dark/90 leading-relaxed">
+            At Niftek, we provide cutting-edge AI services that transform your business operations. Our comprehensive AI solutions are designed to help you leverage the power of artificial intelligence to drive innovation and efficiency.
+          </p>
+          <div>
+            <h4 className="font-semibold text-niftek-dark mb-2">Our AI Services Include:</h4>
+            <ul className="list-disc list-inside space-y-2 text-niftek-dark/80">
+              <li>Large Language Model (LLM) Implementation and Integration</li>
+              <li>Retrieval-Augmented Generation (RAG) Systems</li>
+              <li>AI Governance and Compliance Solutions</li>
+              <li>Machine Learning Model Development</li>
+              <li>Natural Language Processing (NLP) Solutions</li>
+              <li>AI Strategy and Consulting</li>
+              <li>Custom AI Application Development</li>
+            </ul>
+          </div>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our team of AI experts works closely with you to understand your unique business needs and develop tailored solutions that deliver measurable results. We ensure that all AI implementations are secure, ethical, and aligned with industry best practices.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: 'Development',
+      description: 'Custom software development and integration services tailored to your business requirements.',
+      src: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80',
+      ctaText: 'Get Started',
+      ctaLink: '/contact',
+      content: () => (
+        <div className="space-y-4">
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our development services encompass the full software development lifecycle, from initial concept to deployment and maintenance. We build scalable, robust applications that grow with your business.
+          </p>
+          <div>
+            <h4 className="font-semibold text-niftek-dark mb-2">Development Services:</h4>
+            <ul className="list-disc list-inside space-y-2 text-niftek-dark/80">
+              <li>Custom Web Application Development</li>
+              <li>Mobile App Development (iOS & Android)</li>
+              <li>API Development and Integration</li>
+              <li>Cloud-Native Application Development</li>
+              <li>Microservices Architecture</li>
+              <li>Legacy System Modernization</li>
+              <li>DevOps and CI/CD Pipeline Setup</li>
+              <li>Quality Assurance and Testing</li>
+            </ul>
+          </div>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            We use modern technologies and agile methodologies to deliver high-quality software solutions on time and within budget. Our development team is experienced in various programming languages, frameworks, and platforms.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: 'Cybersecurity',
+      description: 'AI-powered security solutions to protect your business from threats and vulnerabilities.',
+      src: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
+      ctaText: 'Secure Your Business',
+      ctaLink: '/contact',
+      content: () => (
+        <div className="space-y-4">
+          <p className="text-niftek-dark/90 leading-relaxed">
+            In today's digital landscape, cybersecurity is paramount. Our AI-powered security solutions provide comprehensive protection against evolving cyber threats, ensuring your business data and systems remain secure.
+          </p>
+          <div>
+            <h4 className="font-semibold text-niftek-dark mb-2">Cybersecurity Services:</h4>
+            <ul className="list-disc list-inside space-y-2 text-niftek-dark/80">
+              <li>Threat Detection and Response</li>
+              <li>Security Assessment and Auditing</li>
+              <li>Penetration Testing</li>
+              <li>Security Architecture Design</li>
+              <li>Identity and Access Management</li>
+              <li>Data Encryption and Protection</li>
+              <li>Security Compliance (SOC 2, ISO 27001)</li>
+              <li>24/7 Security Monitoring</li>
+            </ul>
+          </div>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our cybersecurity experts use advanced AI and machine learning technologies to detect, prevent, and respond to security threats in real-time. We help you build a robust security posture that protects against both known and emerging threats.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: 'Consulting',
+      description: 'Expert consulting services to help you make informed technology decisions.',
+      src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80',
+      ctaText: 'Consult With Us',
+      ctaLink: '/contact',
+      content: () => (
+        <div className="space-y-4">
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our consulting services help you navigate the complex world of technology and make strategic decisions that drive business growth. We provide expert guidance tailored to your industry and business objectives.
+          </p>
+          <div>
+            <h4 className="font-semibold text-niftek-dark mb-2">Consulting Offerings:</h4>
+            <ul className="list-disc list-inside space-y-2 text-niftek-dark/80">
+              <li>Technology Strategy and Roadmap</li>
+              <li>Digital Transformation Consulting</li>
+              <li>Cloud Migration Strategy</li>
+              <li>IT Architecture and Design</li>
+              <li>Process Optimization</li>
+              <li>Technology Vendor Selection</li>
+              <li>Change Management</li>
+              <li>Training and Knowledge Transfer</li>
+            </ul>
+          </div>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our consultants bring years of industry experience and deep technical expertise to help you identify opportunities, mitigate risks, and achieve your technology goals. We work as an extension of your team to deliver actionable insights and recommendations.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: 'Data Solutions',
+      description: 'Data management, analytics, and knowledge augmentation services.',
+      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+      ctaText: 'Explore Solutions',
+      ctaLink: '/contact',
+      content: () => (
+        <div className="space-y-4">
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Transform your data into actionable insights with our comprehensive data solutions. We help you collect, manage, analyze, and leverage your data to drive informed business decisions.
+          </p>
+          <div>
+            <h4 className="font-semibold text-niftek-dark mb-2">Data Services:</h4>
+            <ul className="list-disc list-inside space-y-2 text-niftek-dark/80">
+              <li>Data Strategy and Architecture</li>
+              <li>Data Warehousing and ETL</li>
+              <li>Business Intelligence and Analytics</li>
+              <li>Data Visualization and Reporting</li>
+              <li>Knowledge Management Systems</li>
+              <li>Data Quality and Governance</li>
+              <li>Predictive Analytics and Machine Learning</li>
+              <li>Real-time Data Processing</li>
+            </ul>
+          </div>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our data solutions enable you to unlock the full potential of your data assets. We design and implement scalable data infrastructure that supports your current needs while preparing for future growth and innovation.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: 'Integration',
+      description: 'Seamless integration of AI and technology solutions into your existing workflows.',
+      src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+      ctaText: 'Integrate Now',
+      ctaLink: '/contact',
+      content: () => (
+        <div className="space-y-4">
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Seamlessly connect your systems, applications, and data sources with our integration services. We ensure that new technologies work harmoniously with your existing infrastructure.
+          </p>
+          <div>
+            <h4 className="font-semibold text-niftek-dark mb-2">Integration Services:</h4>
+            <ul className="list-disc list-inside space-y-2 text-niftek-dark/80">
+              <li>API Integration and Development</li>
+              <li>System-to-System Integration</li>
+              <li>Cloud Integration Services</li>
+              <li>Enterprise Application Integration</li>
+              <li>Data Integration and Synchronization</li>
+              <li>Third-Party Service Integration</li>
+              <li>Workflow Automation</li>
+              <li>Integration Testing and Support</li>
+            </ul>
+          </div>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our integration experts ensure that all your systems communicate effectively, reducing manual work and improving operational efficiency. We design integration solutions that are scalable, maintainable, and secure.
+          </p>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div className="bg-niftek-offwhite min-h-screen">
       <div className="container mx-auto px-4 py-8 md:py-12">
@@ -30,95 +210,15 @@ export default function ServicesPage() {
             Services
           </h1>
           <p className="text-lg text-niftek-dark/80 max-w-3xl mx-auto">
-            Discover our comprehensive range of services designed to meet your business needs.
+            Discover our comprehensive range of services designed to meet your business needs. Click on any service card to learn more.
           </p>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid with Expandable Cards */}
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Service Card 1 */}
-            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-niftek-medium rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-niftek-dark mb-2">AI Services</h3>
-              <p className="text-niftek-dark/80 leading-relaxed">
-                Comprehensive AI solutions including LLM implementations, RAG systems, and AI governance.
-              </p>
-            </div>
-
-            {/* Service Card 2 */}
-            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-niftek-medium rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-niftek-dark mb-2">Development</h3>
-              <p className="text-niftek-dark/80 leading-relaxed">
-                Custom software development and integration services tailored to your business requirements.
-              </p>
-            </div>
-
-            {/* Service Card 3 */}
-            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-niftek-medium rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-niftek-dark mb-2">Cybersecurity</h3>
-              <p className="text-niftek-dark/80 leading-relaxed">
-                AI-powered security solutions to protect your business from threats and vulnerabilities.
-              </p>
-            </div>
-
-            {/* Service Card 4 */}
-            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-niftek-medium rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-niftek-dark mb-2">Consulting</h3>
-              <p className="text-niftek-dark/80 leading-relaxed">
-                Expert consulting services to help you make informed technology decisions.
-              </p>
-            </div>
-
-            {/* Service Card 5 */}
-            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-niftek-medium rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-niftek-dark mb-2">Data Solutions</h3>
-              <p className="text-niftek-dark/80 leading-relaxed">
-                Data management, analytics, and knowledge augmentation services.
-              </p>
-            </div>
-
-            {/* Service Card 6 */}
-            <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-niftek-medium rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-niftek-dark mb-2">Integration</h3>
-              <p className="text-niftek-dark/80 leading-relaxed">
-                Seamless integration of AI and technology solutions into your existing workflows.
-              </p>
-            </div>
-          </div>
+          <ExpandableServiceCard cards={services} />
         </div>
       </div>
     </div>
   );
 }
-
-

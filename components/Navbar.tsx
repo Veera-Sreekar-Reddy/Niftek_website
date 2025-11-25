@@ -2,13 +2,32 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { useOutsideClick } from '@/hooks/use-outside-click';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCompanyOpen, setIsCompanyOpen] = useState(false);
+  const companyDropdownRef = useRef<HTMLLIElement>(null);
+  const pathname = usePathname();
+
+  // Close dropdown when clicking outside
+  useOutsideClick(companyDropdownRef, () => setIsCompanyOpen(false));
+
+  // Helper function to check if a path is active
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(path);
+  };
+
+  // Check if company dropdown should be active
+  const isCompanyActive = isActive('/company') || isActive('/privacy') || isActive('/everify');
 
   return (
-    <nav className="bg-white border-niftek-light pl-2 pr-4 lg:pl-2 lg:pr-6 py-2.5 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white border-niftek-light pl-2 pr-4 lg:pl-2 lg:pr-6 py-2.5 shadow-sm">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
         {/* Logo on the left */}
         <Link href="/" className="flex items-center -ml-2">
@@ -73,24 +92,99 @@ export default function Navbar() {
             <li>
               <Link
                 href="/"
-                className="block py-2 pl-3 pr-4 text-niftek-dark rounded lg:bg-transparent lg:text-niftek-dark lg:p-0 hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent transition-colors"
-                aria-current="page"
+                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                  isActive('/')
+                    ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                }`}
+                aria-current={isActive('/') ? 'page' : undefined}
               >
                 Home
               </Link>
             </li>
-            <li>
-              <Link
-                href="/company"
-                className="block py-2 pl-3 pr-4 text-niftek-dark rounded lg:bg-transparent lg:text-niftek-dark lg:p-0 hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent transition-colors"
+            <li 
+              ref={companyDropdownRef}
+              className="relative"
+              onMouseEnter={() => setIsCompanyOpen(true)}
+              onMouseLeave={() => setIsCompanyOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setIsCompanyOpen(!isCompanyOpen)}
+                className={`flex items-center justify-between w-full py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                  isCompanyActive
+                    ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                }`}
+                aria-expanded={isCompanyOpen}
+                aria-haspopup="true"
               >
-                Company
-              </Link>
+                <span>Company</span>
+                <svg
+                  className={`w-4 h-4 ml-1 transition-transform ${isCompanyOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {/* Dropdown Menu */}
+              <div
+                className={`${
+                  isCompanyOpen ? 'block' : 'hidden'
+                } absolute left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-niftek-light z-50 lg:mt-0`}
+              >
+                <ul className="py-2">
+                  <li>
+                    <Link
+                      href="/company"
+                      className="block px-4 py-2 text-sm text-niftek-dark hover:bg-niftek-offwhite hover:text-niftek-medium transition-colors"
+                      onClick={() => {
+                        setIsCompanyOpen(false);
+                        setIsOpen(false);
+                      }}
+                    >
+                      About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/privacy"
+                      className="block px-4 py-2 text-sm text-niftek-dark hover:bg-niftek-offwhite hover:text-niftek-medium transition-colors"
+                      onClick={() => {
+                        setIsCompanyOpen(false);
+                        setIsOpen(false);
+                      }}
+                    >
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/everify"
+                      className="block px-4 py-2 text-sm text-niftek-dark hover:bg-niftek-offwhite hover:text-niftek-medium transition-colors"
+                      onClick={() => {
+                        setIsCompanyOpen(false);
+                        setIsOpen(false);
+                      }}
+                    >
+                      E-Verify
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </li>
             <li>
               <Link
                 href="/services"
-                className="block py-2 pl-3 pr-4 text-niftek-dark rounded lg:bg-transparent lg:text-niftek-dark lg:p-0 hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent transition-colors"
+                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                  isActive('/services')
+                    ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                }`}
+                aria-current={isActive('/services') ? 'page' : undefined}
               >
                 Services
               </Link>
@@ -98,7 +192,12 @@ export default function Navbar() {
             <li>
               <Link
                 href="/careers"
-                className="block py-2 pl-3 pr-4 text-niftek-dark rounded lg:bg-transparent lg:text-niftek-dark lg:p-0 hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent transition-colors"
+                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                  isActive('/careers')
+                    ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                }`}
+                aria-current={isActive('/careers') ? 'page' : undefined}
               >
                 Careers
               </Link>
@@ -106,7 +205,12 @@ export default function Navbar() {
             <li>
               <Link
                 href="/contact"
-                className="block py-2 pl-3 pr-4 text-niftek-dark rounded lg:bg-transparent lg:text-niftek-dark lg:p-0 hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent transition-colors"
+                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                  isActive('/contact')
+                    ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                }`}
+                aria-current={isActive('/contact') ? 'page' : undefined}
               >
                 Contact Us
               </Link>
