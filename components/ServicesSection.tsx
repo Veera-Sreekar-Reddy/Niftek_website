@@ -4,11 +4,11 @@ import ServiceGroupCard from '@/components/ui/ServiceGroupCard';
 
 const serviceGroups = [
   {
-    groupTitle: 'Planning & Design',
-    groupDescription: 'Strategic foundation and user-centered design for AI products that deliver exceptional experiences.',
+    groupTitle: 'AI Product Engineering',
+    groupDescription: 'Strategic planning, design, and development of intelligent AI-powered products and applications.',
     icon: (
       <svg className="w-6 h-6 text-niftek-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     ),
     services: [
@@ -38,17 +38,6 @@ const serviceGroups = [
           ],
         },
       },
-    ],
-  },
-  {
-    groupTitle: 'Development & Integration',
-    groupDescription: 'Building intelligent systems with advanced AI models and scalable applications.',
-    icon: (
-      <svg className="w-6 h-6 text-niftek-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
-    services: [
       {
         title: 'Model Integration & Intelligence Layer',
         description: 'Advanced AI models, RAG systems, and LLM-based copilots.',
@@ -118,6 +107,51 @@ const serviceGroups = [
       },
     ],
   },
+  {
+    groupTitle: 'Cloud & Business Intelligence',
+    groupDescription: 'Transform with Cloud and unlock actionable business insights through advanced analytics.',
+    icon: (
+      <svg className="w-6 h-6 text-niftek-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+      </svg>
+    ),
+    services: [
+      {
+        title: 'Cloud Transformation Services',
+        description: 'Transform with Cloud to build the digital enterprise of tomorrow',
+        detailedContent: {
+          paragraph: 'Conversations regarding the cloud have evolved significantly - from being merely about cost optimization and improved agility and scale, to being about the cloud\'s role as a key enabler of transformation in today\'s enterprise. Customers are looking to the cloud to enable them to deliver business resilience, help transform into a leading digital enterprise and deliver consistent sustainable growth. Given this, the business world is witnessing a mad dash to the cloud. In this haste to stay competitive, enterprises find themselves at different stages of the cloud adoption journey, with some thriving and others still making sense of the investments they\'ve made.',
+          listItems: [
+            'Cloud strategy and roadmap development',
+            'Cloud migration and modernization',
+            'Multi-cloud and hybrid cloud solutions',
+            'Cloud-native application development',
+            'Infrastructure as Code (IaC) implementation',
+            'Cloud cost optimization and management',
+            'DevOps and CI/CD on cloud platforms',
+            'Cloud security and compliance',
+          ],
+        },
+      },
+      {
+        title: 'Business Intelligence & Analytics',
+        description: 'Actionable Business Insights',
+        detailedContent: {
+          paragraph: 'Your data, no matter how big or small, has a story to tell. We all know that a picture is worth a thousand words. So why are you still flipping through pages of numbers? Business Intelligence will surface the right information to accelerate decision-making. Our intelligence solutions allow your organization data to tell its unique story. With truly accessible data, users can design and deploy their own reports and analyses based on one source of truth. Our expertise in Power BI and Tableau will help you deliver actionable enterprise-level insights across your organization.',
+          listItems: [
+            'Power BI implementation and development',
+            'Tableau dashboard creation and optimization',
+            'Data visualization and reporting',
+            'Self-service BI solutions',
+            'Data warehousing and ETL processes',
+            'Advanced analytics and predictive modeling',
+            'Real-time business intelligence',
+            'Custom analytics solutions',
+          ],
+        },
+      },
+    ],
+  },
 ];
 
 export default function ServicesSection() {
@@ -126,8 +160,7 @@ export default function ServicesSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center text-niftek-dark mb-16">
-            <span className="block">PRODUCT ENGINEERING</span>
-            <span className="block">AND QA</span>
+            <span className="block">PRODUCT ENGINEERING & QA</span>
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">

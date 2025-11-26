@@ -99,7 +99,7 @@ export default function ServiceGroupCard({
                   opacity: { duration: 0.3, ease: 'easeInOut' },
                   scale: { duration: 0.3, ease: 'easeInOut' }
                 }}
-                className="bg-niftek-dark rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden pointer-events-auto"
+                className="bg-niftek-dark rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden pointer-events-auto mx-auto"
               >
                 {/* Header */}
                 <motion.div 
@@ -152,12 +152,12 @@ export default function ServiceGroupCard({
                   </div>
                 </motion.div>
 
-                {/* Content - Side by Side */}
+                {/* Content - Single Column for Single Service */}
                 <motion.div 
                   layout
                   className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]"
                 >
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className={`grid gap-6 ${services.length > 1 ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1 max-w-3xl mx-auto'}`}>
                     {services.map((service, index) => (
                       <motion.div
                         key={index}
@@ -245,7 +245,7 @@ export default function ServiceGroupCard({
           setIsExpanded(true);
           setIsTransitioning(false);
         }}
-        className={`relative bg-niftek-dark rounded-xl p-8 md:p-10 shadow-xl overflow-hidden group hover:shadow-2xl cursor-pointer ${
+        className={`relative bg-niftek-dark rounded-xl p-6 md:p-8 shadow-xl overflow-hidden group hover:shadow-2xl cursor-pointer flex flex-col ${
           isExpanded ? 'invisible pointer-events-none' : ''
         }`}
         style={{
@@ -257,12 +257,12 @@ export default function ServiceGroupCard({
       <div className="absolute top-0 right-0 w-64 h-64 bg-niftek-medium/10 rounded-full blur-3xl group-hover:bg-niftek-medium/20 transition-all duration-300" />
       
       {/* Icon header */}
-      <div className="relative z-10 flex items-center gap-4 mb-6">
+      <div className="relative z-10 flex items-center gap-3 mb-4">
         <motion.div 
           layoutId={`icon-${groupTitle}-${uniqueId}`}
           layout
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="w-12 h-12 rounded-full bg-niftek-medium/20 flex items-center justify-center group-hover:bg-niftek-medium/30 transition-all duration-300 shadow-lg"
+          className="w-10 h-10 rounded-full bg-niftek-medium/20 flex items-center justify-center group-hover:bg-niftek-medium/30 transition-all duration-300 shadow-lg flex-shrink-0"
         >
           {icon}
         </motion.div>
@@ -270,7 +270,7 @@ export default function ServiceGroupCard({
           layoutId={`title-${groupTitle}-${uniqueId}`}
           layout
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="text-2xl md:text-3xl font-bold text-white"
+          className="text-xl md:text-2xl font-bold text-white"
         >
           {groupTitle}
         </motion.h3>
@@ -285,7 +285,7 @@ export default function ServiceGroupCard({
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="relative z-10 text-niftek-light/80 text-base md:text-lg mb-8 leading-relaxed"
+            className="relative z-10 text-niftek-light/80 text-sm md:text-base mb-4 leading-relaxed line-clamp-2"
           >
             {groupDescription}
           </motion.p>
@@ -300,9 +300,9 @@ export default function ServiceGroupCard({
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="relative z-10 space-y-5 mb-6"
+            className="relative z-10 space-y-3 mb-4"
           >
-            {services.map((service, index) => (
+            {services.slice(0, 2).map((service, index) => (
               <motion.div
                 key={index}
                 layoutId={`service-${service.title}-${uniqueId}`}
@@ -315,13 +315,13 @@ export default function ServiceGroupCard({
                   opacity: { duration: 0.4, delay: index * 0.1 },
                   x: { duration: 0.4, delay: index * 0.1 }
                 }}
-                className="border-l-2 border-niftek-medium/30 pl-4 hover:border-niftek-medium transition-colors"
+                className="border-l-2 border-niftek-medium/30 pl-3 hover:border-niftek-medium transition-colors"
               >
                 <motion.h4 
                   layoutId={`service-title-${service.title}-${uniqueId}`}
                   layout
                   transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                  className="text-lg font-semibold text-white mb-2"
+                  className="text-base font-semibold text-white mb-1"
                 >
                   {service.title}
                 </motion.h4>
@@ -329,34 +329,17 @@ export default function ServiceGroupCard({
                   layoutId={`service-desc-${service.title}-${uniqueId}`}
                   layout
                   transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                  className="text-sm text-niftek-light/70 leading-relaxed"
+                  className="text-xs text-niftek-light/70 leading-relaxed line-clamp-2"
                 >
                   {service.description}
                 </motion.p>
               </motion.div>
             ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Decorative tags/elements at bottom - Hide when expanded */}
-      <AnimatePresence mode="wait">
-        {!isExpanded && (
-          <motion.div
-            key="tags"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="relative z-10 flex flex-wrap gap-2 mt-6 pt-6 border-t border-niftek-medium/20"
-          >
-            {services.map((service, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 bg-niftek-medium/20 text-niftek-light text-xs rounded-full border border-niftek-medium/30"
-              >
-                {service.title.split(' ')[0]}
-              </span>
-            ))}
+            {services.length > 2 && (
+              <p className="text-xs text-niftek-light/60 italic">
+                +{services.length - 2} more service{services.length - 2 > 1 ? 's' : ''}
+              </p>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -369,12 +352,12 @@ export default function ServiceGroupCard({
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="relative z-10 mt-6 pt-6 border-t border-niftek-medium/20"
+            className="relative z-10 mt-auto pt-4 border-t border-niftek-medium/20"
           >
-            <button className="w-full px-6 py-3 bg-niftek-medium hover:bg-niftek-medium/90 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group/btn">
+            <button className="w-full px-4 py-2.5 bg-niftek-medium hover:bg-niftek-medium/90 text-white font-semibold text-sm rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group/btn">
               <span>Learn More</span>
               <svg
-                className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1"
+                className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

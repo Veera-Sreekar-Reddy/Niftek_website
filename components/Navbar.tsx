@@ -43,42 +43,18 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu button - Animated Burger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           type="button"
-          className="inline-flex items-center p-2 ml-3 text-sm text-niftek-dark rounded-lg lg:hidden hover:bg-niftek-offwhite focus:outline-none focus:ring-2 focus:ring-niftek-medium"
+          className={`burger-toggle lg:hidden ml-3 ${isOpen ? 'active' : ''}`}
           aria-controls="mobile-menu"
           aria-expanded={isOpen}
         >
           <span className="sr-only">Open main menu</span>
-          {!isOpen ? (
-            <svg
-              className="w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
-          ) : (
-            <svg
-              className="w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          )}
+          <div className="burger-bar burger-bar-1"></div>
+          <div className="burger-bar burger-bar-2"></div>
+          <div className="burger-bar burger-bar-3"></div>
         </button>
 
         {/* Navigation items on the right */}
@@ -92,10 +68,10 @@ export default function Navbar() {
             <li>
               <Link
                 href="/"
-                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-all duration-300 ${
                   isActive('/')
                     ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
-                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-light/50 lg:hover:bg-transparent lg:hover:text-niftek-medium lg:hover:scale-105'
                 }`}
                 aria-current={isActive('/') ? 'page' : undefined}
               >
@@ -111,10 +87,10 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setIsCompanyOpen(!isCompanyOpen)}
-                className={`flex items-center justify-between w-full py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                className={`flex items-center justify-between w-full py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-all duration-300 ${
                   isCompanyActive
                     ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
-                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-light/50 lg:hover:bg-transparent lg:hover:text-niftek-medium lg:hover:scale-105'
                 }`}
                 aria-expanded={isCompanyOpen}
                 aria-haspopup="true"
@@ -140,7 +116,7 @@ export default function Navbar() {
                   <li>
                     <Link
                       href="/company"
-                      className="block px-4 py-2 text-sm text-niftek-dark hover:bg-niftek-offwhite hover:text-niftek-medium transition-colors"
+                      className="block px-4 py-2 text-sm text-niftek-dark hover:bg-niftek-light/50 hover:text-niftek-medium transition-all duration-300 rounded"
                       onClick={() => {
                         setIsCompanyOpen(false);
                         setIsOpen(false);
@@ -152,7 +128,7 @@ export default function Navbar() {
                   <li>
                     <Link
                       href="/privacy"
-                      className="block px-4 py-2 text-sm text-niftek-dark hover:bg-niftek-offwhite hover:text-niftek-medium transition-colors"
+                      className="block px-4 py-2 text-sm text-niftek-dark hover:bg-niftek-light/50 hover:text-niftek-medium transition-all duration-300 rounded"
                       onClick={() => {
                         setIsCompanyOpen(false);
                         setIsOpen(false);
@@ -164,7 +140,7 @@ export default function Navbar() {
                   <li>
                     <Link
                       href="/everify"
-                      className="block px-4 py-2 text-sm text-niftek-dark hover:bg-niftek-offwhite hover:text-niftek-medium transition-colors"
+                      className="block px-4 py-2 text-sm text-niftek-dark hover:bg-niftek-light/50 hover:text-niftek-medium transition-all duration-300 rounded"
                       onClick={() => {
                         setIsCompanyOpen(false);
                         setIsOpen(false);
@@ -179,10 +155,10 @@ export default function Navbar() {
             <li>
               <Link
                 href="/services"
-                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-all duration-300 ${
                   isActive('/services')
                     ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
-                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-light/50 lg:hover:bg-transparent lg:hover:text-niftek-medium lg:hover:scale-105'
                 }`}
                 aria-current={isActive('/services') ? 'page' : undefined}
               >
@@ -192,10 +168,10 @@ export default function Navbar() {
             <li>
               <Link
                 href="/careers"
-                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-all duration-300 ${
                   isActive('/careers')
                     ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
-                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-light/50 lg:hover:bg-transparent lg:hover:text-niftek-medium lg:hover:scale-105'
                 }`}
                 aria-current={isActive('/careers') ? 'page' : undefined}
               >
@@ -205,10 +181,10 @@ export default function Navbar() {
             <li>
               <Link
                 href="/contact"
-                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-colors ${
+                className={`block py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 transition-all duration-300 ${
                   isActive('/contact')
                     ? 'text-niftek-medium font-semibold lg:border-b-2 lg:border-niftek-medium'
-                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-offwhite lg:hover:bg-transparent'
+                    : 'text-niftek-dark hover:text-niftek-medium hover:bg-niftek-light/50 lg:hover:bg-transparent lg:hover:text-niftek-medium lg:hover:scale-105'
                 }`}
                 aria-current={isActive('/contact') ? 'page' : undefined}
               >

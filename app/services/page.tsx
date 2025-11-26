@@ -184,6 +184,66 @@ export default function ServicesPage() {
         </div>
       ),
     },
+    {
+      title: 'Cloud Transformation Services',
+      description: 'Transform with Cloud to build the digital enterprise of tomorrow',
+      src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
+      ctaText: 'Transform Now',
+      ctaLink: '/contact',
+      content: () => (
+        <div className="space-y-4">
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Conversations regarding the cloud have evolved significantly - from being merely about cost optimization and improved agility and scale, to being about the cloud's role as a key enabler of transformation in today's enterprise.
+          </p>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Customers are looking to the cloud to enable them to deliver business resilience, help transform into a leading digital enterprise and deliver consistent sustainable growth. Given this, the business world is witnessing a mad dash to the cloud. In this haste to stay competitive, enterprises find themselves at different stages of the cloud adoption journey, with some thriving and others still making sense of the investments they've made.
+          </p>
+          <div>
+            <h4 className="font-semibold text-niftek-dark mb-2">Cloud Transformation Services:</h4>
+            <ul className="list-disc list-inside space-y-2 text-niftek-dark/80">
+              <li>Cloud Strategy and Roadmap Development</li>
+              <li>Cloud Migration and Modernization</li>
+              <li>Multi-Cloud and Hybrid Cloud Solutions</li>
+              <li>Cloud-Native Application Development</li>
+              <li>Infrastructure as Code (IaC) Implementation</li>
+              <li>Cloud Cost Optimization and Management</li>
+              <li>DevOps and CI/CD on Cloud Platforms</li>
+              <li>Cloud Security and Compliance</li>
+            </ul>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: 'Business Intelligence & Analytics',
+      description: 'Actionable Business Insights',
+      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+      ctaText: 'Get Insights',
+      ctaLink: '/contact',
+      content: () => (
+        <div className="space-y-4">
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Your data, no matter how big or small, has a story to tell. We all know that a picture is worth a thousand words. So why are you still flipping through pages of numbers? Business Intelligence will surface the right information to accelerate decision-making.
+          </p>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our intelligence solutions allow your organization data to tell its unique story. With truly accessible data, users can design and deploy their own reports and analyses based on one source of truth. Our expertise in Power BI and Tableau will help you deliver actionable enterprise-level insights across your organization.
+          </p>
+          <div>
+            <h4 className="font-semibold text-niftek-dark mb-2">Business Intelligence Services:</h4>
+            <ul className="list-disc list-inside space-y-2 text-niftek-dark/80">
+              <li>Power BI Implementation and Development</li>
+              <li>Tableau Dashboard Creation and Optimization</li>
+              <li>Data Visualization and Reporting</li>
+              <li>Self-Service BI Solutions</li>
+              <li>Data Warehousing and ETL Processes</li>
+              <li>Advanced Analytics and Predictive Modeling</li>
+              <li>Real-Time Business Intelligence</li>
+              <li>Custom Analytics Solutions</li>
+            </ul>
+          </div>
+        </div>
+      ),
+    },
   ];
 
   return (
