@@ -72,30 +72,20 @@ export default function ExpandableServiceCard({ cards }: ExpandableServiceCardPr
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white sm:rounded-3xl overflow-hidden"
+              className="w-full max-w-[900px] h-full md:h-fit md:max-h-[90%] flex flex-col md:flex-row bg-white sm:rounded-3xl overflow-hidden"
             >
-              <motion.div layoutId={`image-${active.title}-${id}`}>
-                <img
-                  width={200}
-                  height={200}
-                  src={active.src}
-                  alt={active.title}
-                  className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
-                />
-              </motion.div>
-
-              <div>
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4">
+              <div className="w-full md:w-1/2 flex flex-col flex-1 overflow-hidden">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4 md:p-6 border-b border-niftek-light/30">
                   <div className="flex-1 min-w-0">
                     <motion.h3
                       layoutId={`title-${active.title}-${id}`}
-                      className="font-bold text-niftek-dark text-xl"
+                      className="font-bold text-niftek-dark text-xl md:text-2xl"
                     >
                       {active.title}
                     </motion.h3>
                     <motion.p
                       layoutId={`description-${active.description}-${id}`}
-                      className="text-niftek-dark/70 mt-1"
+                      className="text-niftek-dark/70 mt-1 text-sm md:text-base"
                     >
                       {active.description}
                     </motion.p>
@@ -114,18 +104,31 @@ export default function ExpandableServiceCard({ cards }: ExpandableServiceCardPr
                   )}
                 </div>
 
-                <div className="pt-4 relative px-4">
+                <div className="pt-4 relative px-4 md:px-6 flex-1 overflow-y-auto">
                   <motion.div
                     layout
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-niftek-dark/80 text-sm md:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                    className="text-niftek-dark/80 text-sm md:text-base pb-6 md:pb-10 flex flex-col items-start gap-4 [scrollbar-width:thin] [scrollbar-color:#2b6777_transparent]"
                   >
                     {active.content()}
                   </motion.div>
                 </div>
               </div>
+
+              <motion.div 
+                layoutId={`image-${active.title}-${id}`}
+                className="w-full md:w-1/2 flex-shrink-0"
+              >
+                <img
+                  width={200}
+                  height={200}
+                  src={active.src}
+                  alt={active.title}
+                  className="w-full h-80 md:h-full object-cover object-top"
+                />
+              </motion.div>
             </motion.div>
           </div>
         ) : null}

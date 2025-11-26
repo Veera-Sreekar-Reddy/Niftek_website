@@ -82,6 +82,22 @@
     animation: gradient-shift 8s ease infinite;
   }
 
+  @keyframes hero-wave-move {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-hero-wave {
+    animation: hero-wave-move 14s ease-in-out infinite;
+  }
+
   .perspective-1000 {
     perspective: 1000px;
   }

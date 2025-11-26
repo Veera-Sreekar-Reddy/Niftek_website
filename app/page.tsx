@@ -1,6 +1,7 @@
 import AnimatedHero from '@/components/AnimatedHero'
 import ScrollRevealSection from '@/components/ScrollRevealSection'
 import ServicesSection from '@/components/ServicesSection'
+import LandingServicesOverviewSection from '@/components/LandingServicesOverviewSection'
 import ProjectShowcaseSection from '@/components/ProjectShowcaseSection'
 import AIServicesSection from '@/components/AIServicesSection'
 
@@ -15,12 +16,13 @@ export default function Home() {
       
       {/* Services Section */}
       <ServicesSection />
+
       
       {/* Project Showcase Section */}
       <ProjectShowcaseSection />
-      
-      {/* AI Services Section */}
-      <AIServicesSection />
+
+      {/* All Services Overview (from Services page) */}
+      <LandingServicesOverviewSection />
     </div>
   )
 }

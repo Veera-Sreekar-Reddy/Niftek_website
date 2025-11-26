@@ -80,7 +80,9 @@ export default function ProjectShowcaseSection() {
   return (
     <div
       ref={sectionRef}
-      className="relative py-20 md:py-32 overflow-hidden bg-white"
+      className={`relative py-20 md:py-32 overflow-hidden bg-white transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-5">

@@ -2,7 +2,7 @@
 
 import ServiceGroupCard from '@/components/ui/ServiceGroupCard';
 
-const serviceGroups = [
+export const serviceGroups = [
   {
     groupTitle: 'AI Product Engineering',
     groupDescription: 'Strategic planning, design, and development of intelligent AI-powered products and applications.',

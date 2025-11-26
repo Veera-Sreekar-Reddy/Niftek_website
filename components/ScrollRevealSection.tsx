@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
+
+const scrollRevealText = `We help organizations design, develop, and scale AI products and systems that are not only intelligent — but also secure, compliant, and enterprise-ready.`;
 
 export default function ScrollRevealSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,8 +20,9 @@ export default function ScrollRevealSection() {
         });
       },
       {
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px',
+        // Trigger when a good portion of the section is actually in view
+        threshold: 0.4,
+        rootMargin: '0px',
       }
     );
 
@@ -36,7 +40,7 @@ export default function ScrollRevealSection() {
   return (
     <div
       ref={sectionRef}
-      className="relative py-20 md:py-32 overflow-hidden bg-white"
+      className="relative min-h-screen py-20 md:py-32 overflow-hidden bg-white flex items-center"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-5">
@@ -44,28 +48,30 @@ export default function ScrollRevealSection() {
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-niftek-dark rounded-full blur-3xl"></div>
       </div>
 
+      {/* Top gradient morph to blend from hero into this section */}
+      <div
+        className={`pointer-events-none absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-niftek-offwhite via-white to-transparent transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'
+        }`}
+      />
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div
-            className={`relative transition-opacity duration-500 ${
-              isVisible ? 'opacity-100' : 'opacity-0'
+            className={`relative transform transition-all duration-700 ${
+              isVisible
+                ? 'opacity-100 translate-y-0 scale-100'
+                : 'opacity-0 translate-y-10 scale-95'
             }`}
           >
-            <p className="text-xl md:text-2xl lg:text-3xl font-light text-niftek-dark leading-relaxed text-center">
-              <span className="block">
-                We help organizations{' '}
-                <span className="font-semibold text-niftek-medium">design</span>,{' '}
-                <span className="font-semibold text-niftek-medium">develop</span>, and{' '}
-                <span className="font-semibold text-niftek-medium">scale</span> AI products and systems
-              </span>
-              <span className="block">
-                that are not only{' '}
-                <span className="font-semibold text-niftek-dark">intelligent</span> — but also{' '}
-                <span className="font-semibold text-niftek-medium">secure</span>,{' '}
-                <span className="font-semibold text-niftek-medium">compliant</span>, and{' '}
-                <span className="font-semibold text-niftek-medium">enterprise-ready</span>.
-              </span>
-            </p>
+            {isVisible && (
+              <TextGenerateEffect
+                words={scrollRevealText}
+                className="font-normal text-center"
+                filter
+                duration={0.8}
+              />
+            )}
           </div>
         </div>
       </div>
