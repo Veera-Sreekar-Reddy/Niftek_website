@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { services } from '@/lib/servicesData';
 
 export default function Footer() {
+  // Select a subset of services to display in footer
+  const footerServices = services.slice(0, 6); // Get first 6 services
   return (
     <footer className="bg-white text-gray-800 mt-auto border-t border-gray-200">
       <div className="max-w-screen-xl mx-auto px-4 lg:px-6 py-12">
@@ -90,54 +93,16 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-lg text-niftek-dark">IT Services</h4>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <Link href="/services" className="hover:text-niftek-dark transition-colors">
-                  Cloud Transformation Services
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <Link href="/services" className="hover:text-niftek-dark transition-colors">
-                  ERP Implementation and Upgrades
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <Link href="/services" className="hover:text-niftek-dark transition-colors">
-                  Business Intelligence & Analytics
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <Link href="/services" className="hover:text-niftek-dark transition-colors">
-                  RPA (Robotic Process Automation)
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <Link href="/services" className="hover:text-niftek-dark transition-colors">
-                  IT Consulting Services
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-                <Link href="/services" className="hover:text-niftek-dark transition-colors">
-                  Product Management
-                </Link>
-              </li>
+              {footerServices.map((service) => (
+                <li key={service.title} className="flex items-center">
+                  <svg className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                  <Link href="/services" className="hover:text-niftek-dark transition-colors">
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -213,8 +178,8 @@ export default function Footer() {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                <a href="mailto:info@niftek.com" className="hover:text-niftek-dark transition-colors">
-                  info@niftek.com
+                <a href="mailto:hr@niftek.com" className="hover:text-niftek-dark transition-colors">
+                  hr@niftek.com
                 </a>
               </li>
             </ul>

@@ -390,10 +390,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-niftek-dark mb-1">Email</h3>
                     <a
-                      href="mailto:info@niftek.com"
+                      href="mailto:hr@niftek.com"
                       className="text-niftek-medium hover:text-niftek-dark transition-colors"
                     >
-                      info@niftek.com
+                      hr@niftek.com
                     </a>
                   </div>
                 </div>

@@ -83,40 +83,42 @@ export default function LandingServicesOverviewSection() {
         </div>
 
         {/* Tabs - Sticky */}
-        <div className="sticky top-0 z-50 bg-niftek-offwhite pt-4 pb-2 mb-1 md:mb-1">
+        <div className="sticky top-0 z-50 bg-niftek-offwhite pt-4 pb-3 mb-4 md:mb-1">
           <div className="max-w-6xl mx-auto">
-            
             <div className="relative">
-              <div className="overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <div className="flex justify-center">
-                  <div className="inline-flex gap-2 md:gap-3 bg-white rounded-full border border-niftek-light/70 p-1 shadow-sm">
-                  {tabConfig.map((tab) => {
-                    const isActive = tab.label === activeTab;
-                    return (
-                      <button
-                        key={tab.label}
-                        type="button"
-                        onClick={() => setActiveTab(tab.label)}
-                        className={`px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap transition-all ${
-                          isActive
-                            ? 'bg-niftek-dark text-white shadow-sm'
-                            : 'bg-transparent text-niftek-dark/70 hover:bg-niftek-light/40 hover:text-niftek-dark'
-                        }`}
-                      >
-                        {tab.label}
-                      </button>
-                    );
-                  })}
+              {/* Horizontal scrollable tabs container */}
+              <div className="overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-2 scroll-smooth">
+                <div className="flex justify-start md:justify-center min-w-max md:min-w-0 px-2 md:px-0">
+                  <div className="inline-flex gap-2 md:gap-3 bg-white rounded-full border border-niftek-light/70 p-1.5 md:p-1 shadow-sm">
+                    {tabConfig.map((tab) => {
+                      const isActive = tab.label === activeTab;
+                      return (
+                        <button
+                          key={tab.label}
+                          type="button"
+                          onClick={() => setActiveTab(tab.label)}
+                          className={`px-4 md:px-4 py-2.5 md:py-2 rounded-full text-sm md:text-sm font-semibold whitespace-nowrap transition-all min-w-fit ${
+                            isActive
+                              ? 'bg-niftek-dark text-white shadow-sm'
+                              : 'bg-transparent text-niftek-dark/70 hover:bg-niftek-light/40 hover:text-niftek-dark active:bg-niftek-light/50'
+                          }`}
+                        >
+                          {tab.label}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-                </div>
-                <div className="flex items-center justify-center py-2 gap-4 mb-3">
-              <Link
-                href="/services"
-                className="hidden md:inline-flex items-center px-4 py-2 rounded-full bg-niftek-dark text-white text-sm font-semibold hover:bg-niftek-medium transition-colors shadow-sm"
-              >
-                View full Services page
-              </Link>
-            </div>
+              </div>
+              
+              {/* View full services link - hidden on mobile, shown on desktop */}
+              <div className="flex items-center justify-center py-2 gap-4 mb-3">
+                <Link
+                  href="/services"
+                  className="hidden md:inline-flex items-center px-4 py-2 rounded-full bg-niftek-dark text-white text-sm font-semibold hover:bg-niftek-medium transition-colors shadow-sm"
+                >
+                  View full Services page
+                </Link>
               </div>
             </div>
           </div>
