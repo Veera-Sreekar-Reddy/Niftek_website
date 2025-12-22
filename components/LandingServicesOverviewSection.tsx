@@ -22,13 +22,14 @@ const gradients = [
 const getSubtitle = (title: string): string => {
   const subtitleMap: Record<string, string> = {
     'AI Services': 'Intelligent Solutions',
-    'Development': 'Custom Software Solutions',
+    'Software Development': 'Custom Software Solutions',
     'Cybersecurity': 'AI-Powered Security',
     'Consulting': 'Expert Guidance',
     'Data Solutions': 'Data-Driven Insights',
     'Integration': 'Seamless Connectivity',
     'Cloud Transformation Services': 'Cloud Excellence',
     'Business Intelligence & Analytics': 'Actionable Insights',
+    'RPA': 'Robotic Process Automation',
   };
   return subtitleMap[title] || 'Professional Services';
 };
@@ -44,7 +45,7 @@ const tabConfig = [
   },
   {
     label: 'Build & Integrate',
-    titles: ['Development', 'Integration'],
+    titles: ['Software Development', 'Integration', 'RPA'],
   },
   {
     label: 'Cloud, Data & BI',

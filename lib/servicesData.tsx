@@ -42,7 +42,7 @@ export const services: ServiceCard[] = [
     ),
   },
   {
-    title: 'Development',
+    title: 'Software Development',
     description: 'Custom software development and integration services tailored to your business requirements.',
     src: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80',
     ctaText: 'Get Started',
@@ -272,6 +272,49 @@ export const services: ServiceCard[] = [
             <li>Real-Time Business Intelligence</li>
             <li>Custom Analytics Solutions</li>
           </ul>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: 'RPA',
+    description: 'Automate repetitive tasks and boost productivity with intelligent robotic process automation solutions.',
+    src: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80',
+    ctaText: 'Build Your Bots',
+    ctaLink: '/contact',
+    content: () => (
+      <div className="space-y-4">
+        <div>
+          <h4 className="font-semibold text-niftek-dark mb-2">What is Robotic Process Automation?</h4>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            RPA is an application of technology, governed by business logic and structured inputs, aimed at automating
+            business processes.
+          </p>
+          <p className="text-niftek-dark/90 leading-relaxed mt-2">
+            RPA scenarios range from something as simple as generating an automatic response to an email to deploying
+            thousands of bots, each programmed to automate jobs in an ERP system.
+          </p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-niftek-dark mb-2">What we offer?</h4>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our portfolio of professional IT services and RPA solutions enables our clients to maximize their investments
+            and capacity in the achievement of business goals and the realization of rapid returns.
+          </p>
+          <p className="text-niftek-dark/90 leading-relaxed mt-2">
+            It&apos;s our key mission to enable our customers to exceed expectations in their automation journey by
+            turning their RPA strategies into guaranteed business results.
+          </p>
+          <p className="text-niftek-dark/90 leading-relaxed mt-2">
+            We specialize in the development, testing, deployment, and maintenance of your robotic workforce.
+          </p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-niftek-dark mb-2">Let&apos;s Build Some Bots</h4>
+          <p className="text-niftek-dark/90 leading-relaxed">
+            Our RPA solutions help boost productivity by rapidly automating mundane and repetitive tasks, 24/7. As a
+            result, your staff has more time to focus on mission-critical tasks and your office gets more done.
+          </p>
         </div>
       </div>
     ),

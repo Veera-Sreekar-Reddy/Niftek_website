@@ -3,7 +3,6 @@ import ScrollRevealSection from '@/components/ScrollRevealSection'
 import ServicesSection from '@/components/ServicesSection'
 import LandingServicesOverviewSection from '@/components/LandingServicesOverviewSection'
 import ProjectShowcaseSection from '@/components/ProjectShowcaseSection'
-import AIServicesSection from '@/components/AIServicesSection'
 
 export default function Home() {
   return (
