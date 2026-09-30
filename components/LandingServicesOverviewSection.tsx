@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import ExpandableServiceCard from '@/components/ui/expandable-service-card';
 import { services } from '@/lib/servicesData';
-import AIServicesSection from '@/components/AIServicesSection';
+
+const glanceServices = services.filter((service) => service.title !== 'AI Services');
 
 // Gradient colors for service cards (alternating pattern)
 const gradients = [
@@ -21,7 +21,6 @@ const gradients = [
 // Generate subtitle from title
 const getSubtitle = (title: string): string => {
   const subtitleMap: Record<string, string> = {
-    'AI Services': 'Intelligent Solutions',
     'Software Development': 'Custom Software Solutions',
     'Cybersecurity': 'AI-Powered Security',
     'Consulting': 'Expert Guidance',
@@ -37,11 +36,7 @@ const getSubtitle = (title: string): string => {
 const tabConfig = [
   {
     label: 'All',
-    titles: services.map((s) => s.title),
-  },
-  {
-    label: 'AI Services',
-    titles: ['AI Services'],
+    titles: glanceServices.map((s) => s.title),
   },
   {
     label: 'Build & Integrate',
@@ -66,7 +61,7 @@ export default function LandingServicesOverviewSection() {
 
   const activeConfig = tabConfig.find((tab) => tab.label === activeTab) ?? tabConfig[0];
 
-  const visibleCards = services.filter((service) =>
+  const visibleCards = glanceServices.filter((service) =>
     activeConfig.titles.includes(service.title)
   );
 
@@ -127,37 +122,33 @@ export default function LandingServicesOverviewSection() {
 
         {/* Cards area */}
         <div className="max-w-7xl mx-auto">
-          {activeTab === 'AI Services' ? (
-            <AIServicesSection />
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {visibleCards.map((service, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {visibleCards.map((service, index) => (
+              <div
+                key={service.title}
+                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col border border-niftek-light/60"
+              >
+                {/* Gradient header */}
                 <div
-                  key={service.title}
-                  className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col border border-niftek-light/60"
+                  className="h-32 flex items-center justify-center text-white relative"
+                  style={{ background: gradients[index % gradients.length] }}
                 >
-                  {/* Gradient header */}
-                  <div
-                    className="h-32 flex items-center justify-center text-white relative"
-                    style={{ background: gradients[index % gradients.length] }}
-                  >
-                    <div className="absolute inset-0 bg-black/20" />
-                    <div className="relative z-10 text-center px-4">
-                      <h3 className="text-xl font-bold mb-1 text-white">{service.title}</h3>
-                      <p className="text-sm opacity-95 text-white">{getSubtitle(service.title)}</p>
-                    </div>
-                  </div>
-
-                  {/* Body */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <p className="text-sm md:text-base text-niftek-dark/80 leading-relaxed">
-                      {service.description}
-                    </p>
+                  <div className="absolute inset-0 bg-black/20" />
+                  <div className="relative z-10 text-center px-4">
+                    <h3 className="text-xl font-bold mb-1 text-white">{service.title}</h3>
+                    <p className="text-sm opacity-95 text-white">{getSubtitle(service.title)}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
+
+                {/* Body */}
+                <div className="p-6 flex-1 flex flex-col">
+                  <p className="text-sm md:text-base text-niftek-dark/80 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-10 md:mt-12 text-center">

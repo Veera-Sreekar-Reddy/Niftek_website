@@ -1,8 +1,8 @@
 import AnimatedHero from '@/components/AnimatedHero'
+import WhatWeBuildSection from '@/components/WhatWeBuildSection'
 import ScrollRevealSection from '@/components/ScrollRevealSection'
-import ServicesSection from '@/components/ServicesSection'
+import DeliveryProcessSection from '@/components/DeliveryProcessSection'
 import LandingServicesOverviewSection from '@/components/LandingServicesOverviewSection'
-import ProjectShowcaseSection from '@/components/ProjectShowcaseSection'
 
 export default function Home() {
   return (
@@ -12,16 +12,14 @@ export default function Home() {
       
       {/* Scroll Reveal Section */}
       <ScrollRevealSection />
-      
-      {/* Services Section */}
-      <ServicesSection />
 
-      
-      {/* Project Showcase Section */}
-      <ProjectShowcaseSection />
 
-      {/* All Services Overview (from Services page) */}
-      <LandingServicesOverviewSection />
+       {/* What we build */}
+       <WhatWeBuildSection />
+
+      {/* Delivery process */}
+      <DeliveryProcessSection />
+
     </div>
   )
 }

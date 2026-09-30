@@ -4,6 +4,8 @@ import Link from 'next/link';
 import ExpandableServiceCard from '@/components/ui/expandable-service-card';
 import { services } from '@/lib/servicesData';
 
+const pageServices = services.filter((service) => service.title !== 'AI Services');
+
 export default function ServicesPage() {
   return (
     <div className="bg-niftek-offwhite min-h-screen">
@@ -35,7 +37,7 @@ export default function ServicesPage() {
 
         {/* Services Grid with Expandable Cards */}
         <div className="max-w-7xl mx-auto">
-          <ExpandableServiceCard cards={services} />
+          <ExpandableServiceCard cards={pageServices} />
         </div>
       </div>
     </div>
