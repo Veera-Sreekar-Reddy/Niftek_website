@@ -32,7 +32,7 @@ const offerings = [
   },
   {
     label: 'AI Platform',
-    title: 'Autonomous Deal Negotiation',
+    title: 'HeyHica - Autonomous Deal Negotiation',
     body: 'A governed multi-agent platform for vendor outreach, quote analysis, negotiation strategy, approvals, comparison, and recommendations.',
     cta: 'Explore platform',
     href: '/what-we-do/ai-platform/autonomous-deal-negotiation',

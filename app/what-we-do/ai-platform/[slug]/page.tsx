@@ -6,7 +6,7 @@ import DealNegotiationPage from '@/components/DealNegotiationPage';
 const platformItems = [
   {
     slug: 'autonomous-deal-negotiation',
-    name: 'Autonomous Deal Negotiation',
+    name: 'HeyHica - Autonomous Deal Negotiation',
     description: 'Multi-agent vendor negotiation and procurement',
     summary:
       'A governed multi-agent system that coordinates vendor outreach, inbound replies, quote extraction, negotiation strategy, approval, comparison, and final recommendation across a persistent deal workflow.',

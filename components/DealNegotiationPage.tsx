@@ -82,7 +82,7 @@ export default function DealNegotiationPage() {
       <section className="px-4 pb-16 pt-14 sm:px-6 md:pb-20 md:pt-20">
         <div className="mx-auto max-w-6xl">
           <h1 className="max-w-3xl text-5xl font-bold tracking-tight text-[#12352c] sm:text-6xl">
-            Autonomous Deal Negotiation
+            HeyHica - Autonomous Deal Negotiation
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#5d6b66]">
             A governed multi-agent system that coordinates vendor outreach, inbound replies, quote

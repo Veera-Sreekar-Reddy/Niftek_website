@@ -130,7 +130,11 @@ export default function Footer() {
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-                <span>5899 Preston Rd Suite 1204 Frisco, Texas, 75034</span>
+                <span>
+                  3608 Preston Rd<br />
+                  Ste 202<br />
+                  Plano TX 75093
+                </span>
               </li>
               <li className="flex items-center">
                 <svg

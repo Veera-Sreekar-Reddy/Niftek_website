@@ -27,7 +27,7 @@ const aiProductLinks = [
 const aiPlatformLinks = [
   {
     href: '/what-we-do/ai-platform/autonomous-deal-negotiation',
-    name: 'Autonomous Deal Negotiation',
+    name: 'HeyHica - Autonomous Deal Negotiation',
     description: 'Multi-agent vendor negotiation and procurement',
   },
 ];

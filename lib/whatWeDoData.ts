@@ -32,7 +32,7 @@ export const whatWeDoPages: WhatWeDoPage[] = [
       'The AI platform includes systems that carry multi-step commercial work, including vendor negotiation and procurement, with less manual coordination.',
     ],
     points: [
-      'Autonomous Deal Negotiation — multi-agent vendor negotiation and procurement',
+      'HeyHica - Autonomous Deal Negotiation — multi-agent vendor negotiation and procurement',
     ],
   },
   {

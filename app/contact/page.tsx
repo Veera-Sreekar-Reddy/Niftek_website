@@ -312,9 +312,9 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-niftek-dark mb-1">Address</h3>
                     <p className="text-niftek-dark/80 leading-relaxed">
-                      5899 Preston Rd<br />
-                      Suite 1204<br />
-                      Frisco, Texas 75034
+                      3608 Preston Rd<br />
+                      Ste 202<br />
+                      Plano TX 75093
                     </p>
                   </div>
                 </div>
