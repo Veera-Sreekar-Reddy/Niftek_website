@@ -10,37 +10,7 @@ export interface ServiceCard {
 }
 
 export const services: ServiceCard[] = [
-  {
-    title: 'AI Services',
-    description: 'Comprehensive AI solutions including LLM implementations, RAG systems, and AI governance.',
-    src: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
-    ctaText: 'Learn More',
-    ctaLink: '/contact',
-    content: () => (
-      <div className="space-y-4">
-        <p className="text-niftek-dark/90 leading-relaxed">
-          At Niftek, we provide cutting-edge AI services that transform your business operations. Our comprehensive AI
-          solutions are designed to help you leverage the power of artificial intelligence to drive innovation and
-          efficiency.
-        </p>
-        <div>
-          <h4 className="font-semibold text-niftek-dark mb-2">Our AI Services Include:</h4>
-          <ul className="list-disc list-inside space-y-2 text-niftek-dark/80">
-            <li>LLM &amp; RAG Implementations</li>
-            <li>Knowledge Augmentation</li>
-            <li>AI Integration &amp; API Orchestration</li>
-            <li>AI Governance &amp; Compliance</li>
-            <li>AI for Cybersecurity</li>
-          </ul>
-        </div>
-        <p className="text-niftek-dark/90 leading-relaxed">
-          Our team of AI experts works closely with you to understand your unique business needs and develop tailored
-          solutions that deliver measurable results. We ensure that all AI implementations are secure, ethical, and
-          aligned with industry best practices.
-        </p>
-      </div>
-    ),
-  },
+  
   {
     title: 'Software Development',
     description: 'Custom software development and integration services tailored to your business requirements.',

@@ -50,14 +50,6 @@ export default function Footer() {
                 <svg className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-                <Link href="/services" className="hover:text-niftek-dark transition-colors">
-                  Industries We Serve
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
                 <Link href="/privacy" className="hover:text-niftek-dark transition-colors">
                   Privacy Policy
                 </Link>
